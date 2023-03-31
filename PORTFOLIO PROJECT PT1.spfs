@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>allowDataLocalInfile</key>
+			<integer>0</integer>
+			<key>database</key>
+			<string>PortfolioProject</string>
+			<key>enableClearTextPlugin</key>
+			<integer>0</integer>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>root@127.0.0.1</string>
+			<key>port</key>
+			<integer>3306</integer>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{310, 0}, {985, 688}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>CREATE TABLE `covid_deaths` ( `iso_code` VARCHAR(255), `continent` VARCHAR(255), `location` VARCHAR(255), `date` DATETIME, `total_tests` DOUBLE, `new_tests` DOUBLE, `total_tests_per_thousand` DOUBLE, `new_tests_per_thousand` DOUBLE, `new_tests_smoothed` DOUBLE, `new_tests_smoothed_per_thousand` DOUBLE, `positive_rate` DOUBLE, `tests_per_case` DOUBLE, `tests_units` VARCHAR(255), `total_vaccinations` DOUBLE, `people_vaccinated` DOUBLE, `people_fully_vaccinated` DOUBLE, `total_boosters` DOUBLE, `new_vaccinations` DOUBLE, `new_vaccinations_smoothed` DOUBLE, `total_vaccinations_per_hundred` DOUBLE, `people_vaccinated_per_hundred` DOUBLE, `people_fully_vaccinated_per_hundred` DOUBLE, `total_boosters_per_hundred` DOUBLE, `new_vaccinations_smoothed_per_million` DOUBLE, `new_people_vaccinated_smoothed` DOUBLE, `new_people_vaccinated_smoothed_per_hundred` DOUBLE, `stringency_index` DOUBLE, `population_density` DOUBLE, `median_age` DOUBLE, `aged_65_older` DOUBLE, `aged_70_older` DOUBLE, `gdp_per_capita` DOUBLE, `extreme_poverty` DOUBLE, `cardiovasc_death_rate` DOUBLE, `diabetes_prevalence` DOUBLE, `female_smokers` DOUBLE, `male_smokers` DOUBLE, `handwashing_facilities` DOUBLE, `hospital_beds_per_thousand` DOUBLE, `life_expectancy` DOUBLE, `human_development_index` DOUBLE, `excess_mortality_cumulative_absolute` DOUBLE, `excess_mortality_cumulative` DOUBLE, `excess_mortality` DOUBLE, `excess_mortality_cumulative_per_million` DOUBLE )
+
+select * from covid_vaccinations
+order by 3,4
+
+select * from covid_deaths
+order by 3,4
+
+select location, date, total_cases, new_cases,total_deaths, population
+from covid
+order by 1,2
+
+looking at totalcases vs total deaths 
+shows likelihood of dying if you contract covid in your country 
+select location, date, total_cases, total_deaths,(total_deaths/total_cases)*100 as DEATHPERCENTAGE
+from covid
+WHERE location like '%India%'
+order by 1,2
+
+looking at total cases Vs population 
+SHOWS WHAT PERCENTAGE OF PEOPLE GOT COVID 
+select location, date, total_cases, population,(total_cases/population)*100 as PERCENTAGEOFPEOPLEWHOGOTCOVID
+from covid
+WHERE location like '%India%'
+order by 1,2
+
+LOOKING AT COUNTRIES WITH HIGHEST INFECTION RATE COMPARED TO POPULATION 
+
+select location,MAX(total_cases) AS HIGHESTINFECTIONCOUNT , population, Max(total_cases/population)*100 as PERCENTAGEOFPEOPLEWHOGOTCOVID
+from covid
+WHERE location like '%India%'
+group by location, population  
+order by PERCENTAGEOFPEOPLEWHOGOTCOVID desc
+
+SHOWING COUNTRIES WITH HIGHEST DEATHCOUNT PER POPULATION 
+
+select location ,MAX(total_deaths) AS TotalDeathCount 
+from covid
+-- WHERE location like '%states%'
+group by location 
+order by TotalDeathCount desc
+
+
+-- global numbers 
+
+select location, date, total_cases, total_deaths,(total_deaths/total_cases)*100 as DEATHPERCENTAGE
+from covid
+
+ -- WHERE location like '%India%' 
+ where  continent is not null 
+order by 1,2
+
+2) 
+select  date, sum(new_cases)as total_cases , sum(new_deaths) as total_deaths , sum(new_deaths)/sum(new_cases)*100 as DEATHPERCENTAGE
+from covid
+where  continent is not null 
+group by date 
+order by 1,2
+
+
+-- looking at total population vs vaccinations 
+
+select continent,location,date,population,new_vaccinations,
+from covid 
+where continent is not null 
+order by 1,2,3 
+ 
+
+-- percentage people in a country who are vaccinated 
+
+select continent,location,date,population,new_vaccinations,(new_vaccinations/population)* 100 as rollingpeoplevaccinated
+from covid 
+where continent is not null 
+order by 1,2,3
+
+
+</string>
+			<key>table</key>
+			<string>covid</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.31</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
